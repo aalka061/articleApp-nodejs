@@ -15,8 +15,12 @@ app.set('view engine', 'ejs');
 
 mongoose.connect(config.get_db_connection_string());
 
+apiController(app)
+
+app.get('/articles/new', function(req, res){
+    res.render ('articles/new')
+})
 
 //apiSetup(app);
-apiController(app)
 
 app.listen(port);

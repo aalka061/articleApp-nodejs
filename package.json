@@ -1,0 +1,11 @@
+{
+  "name": "articlesapp-nodjs",
+  "version": "1.0.0",
+  "description": "simple app to add, update and delete articles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

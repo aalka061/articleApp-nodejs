@@ -7,11 +7,13 @@ module.exports = function(app) {
         var seedData = [
             {
                 title: "first article",
-                author: "admin"
+                author: "admin",
+                discription: "this my first article thank you"
             },
             {
                 title: "second article",
-                author: "admin"
+                author: "admin",
+                discription: "this my second article thank you"
             }
         
         

@@ -4,8 +4,8 @@ var mongoose = require("mongoose");
 var articleSchema = mongoose.Schema (
     {
         title: {type: String, required: true}, 
-        author: {type: String, required: true} 
-
+        author: {type: String, required: true},
+        discription: String
     },
 
     {

@@ -2,6 +2,7 @@ var User = require('../modles/user')
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var bcrypt = require('bcryptjs');
+var passport = require('passport');
 
 
 module.exports = function(app){
@@ -81,4 +82,17 @@ module.exports = function(app){
 
         }
     } ) 
+
+    app.post('/users/login', function (req, res, next){
+        passport.authenticate('local', {
+            successRedirect: '/articles',
+            failureRedirect: '/users/login',
+            failureFlash: true
+        }) (req, res, next);
+     });
+
+     app.get ('/users/logout', function(req, res){
+         req.logout();
+         res.redirect('/articles')
+     })
 }

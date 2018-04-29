@@ -18,6 +18,13 @@ var app = new express();
 
 var port = process.env.PORT || 3000;
 
+app.use(session({
+    secret: 'login_secret',
+    name: 'login',
+    proxy: true,
+    resave: true,
+    saveUninitialized: true
+}));
 
 app.use(expressValidator())
 app.use('/assets', express.static(__dirname + '/public'));
@@ -36,21 +43,32 @@ app.use(function(req, res, next){
 //database connection 
 mongoose.connect(config.get_db_connection_string());
 
+
+
+ 
+require('./config/passport')(passport);
+ app.use(passport.initialize());
+ app.use(passport.session());
+
+ app.get('*', function(req, res, next){
+    res.locals.user = req.user || null; 
+    console.log(req.user)
+    next();
+})
+
 // calling apis for the articles 
 apiController(app)
 
 
+apiUsersSetupController(app)
+apiUsersController(app)
+apiSetup(app);
 //routing 
 app.get('/articles/new', function(req, res){
     res.render ('articles/new')
 })
 
-
-function home(req, res, next) {
-    req.url = '/api/articles'
-    //if we want to change the method: req.method = 'POST'
-    return app._router.handle(req, res, next)
- }
+ 
 app.get('/articles', function(req, res){
     var url ='http://localhost:3000/api/articles';
     request({url: url, json: true},  function(err,resp,body){
@@ -69,22 +87,12 @@ app.get('/articles', function(req, res){
     res.render('users/login');
  })
 
- 
-require('./config/passport')(passport);
- app.use(passport.initialize());
- app.use(passport.session());
 
- app.post('/users/login', function (req, res, next){
-    passport.authenticate('local', {
-        successRedirect: '/articles',
-        failureRedirect: '/users/login',
-        failureFlash: true
-    }) (req, res, next);
- });
+
+
+
     
 
- apiUsersSetupController(app)
- apiUsersController(app)
-apiSetup(app);
+
 
 app.listen(port);

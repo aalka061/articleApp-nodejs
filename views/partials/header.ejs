@@ -10,8 +10,13 @@
             <li><a href="/articles/new">Add Article</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/users/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="/users/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+            <% if (user) { %>
+              <li><a href="/users/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            <% } else { %> 
+              <li><a href="/users/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="/users/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <% } %>
           </ul>
         </div>
       </nav> 

@@ -1,6 +1,4 @@
 {
-
     "db_name": "articles",
-    "db_pwd": "articles"
-
+    "db_pwd" : "articles"
 }

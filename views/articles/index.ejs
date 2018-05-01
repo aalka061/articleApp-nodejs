@@ -5,7 +5,6 @@
             integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
              crossorigin="anonymous">
 
-             <link href="css/style.css" rel="stylesheet" type="text/css" >
 
     </head>
 
@@ -34,9 +33,10 @@
 
                         <div class="articles-actions">
 
-                                <a class="btn btn-xs btn-success"  href="articles/<%=data[i]._id%>">Edit</a>
+                                <a class="btn btn-xs btn-success"  href="articles/edit/<%=data[i]._id%>">Edit</a>                  
+                                <button class="btn btn-xs btn-warning" id="delete_article" 
+                                data-id="<%=data[i]._id%>"> Delete</button>
                               
-                                <a class="btn btn-xs btn-warning"  href="articles/<%=data[i]._id%>">Delete</a>
 
                              </div>
 

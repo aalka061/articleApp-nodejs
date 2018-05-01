@@ -84,7 +84,7 @@ module.exports = function(app){
     })
 
 
-    app.get('/articles/:id', function(req, res){
+    app.get('/articles/edit/:id', function(req, res){
 
          Article.findById(req.params.id, function(err, article){
              if (err) throw err;

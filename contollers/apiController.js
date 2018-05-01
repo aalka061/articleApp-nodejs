@@ -56,7 +56,7 @@ module.exports = function(app){
                 discription: req.body.discription
             }, function(err) {
                 if (err) throw err;
-                res.send("Success: file has been updated")   
+                res.redirect('/articles') ;
             })
         } else {
             Article.create ({
@@ -65,7 +65,8 @@ module.exports = function(app){
                 discription: req.body.discription
              }, function(err){
                  if (err) throw err;
-                 res.send("Success: file has been created")
+                 res.redirect('/articles') ;
+
              } )
         }
 
@@ -82,6 +83,19 @@ module.exports = function(app){
         })
     })
 
+
+    app.get('/articles/:id', function(req, res){
+
+         Article.findById(req.params.id, function(err, article){
+             if (err) throw err;
+             res.render('articles/edit', {article: article});
+
+
+        })
+    
+    })
+    
+    
     
 
 
